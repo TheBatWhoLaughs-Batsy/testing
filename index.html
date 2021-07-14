@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head><title>
+    Bruh
+</title></head>
+<body onload="rel()">
+    pitch <input id="pitch" type="text"></input>
+    roll <input id="roll" type="text"></input>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script> 
+
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+
+    <script id="main">
+          var firebaseConfig = {
+            apiKey: "AIzaSyCNCYizC2UAOxLWNvQEJNIT9Au8qvs3KnU",
+            authDomain: "sach-dbee5.firebaseapp.com",
+            databaseURL: "https://sach-dbee5-default-rtdb.firebaseio.com",
+            projectId: "sach-dbee5",
+            storageBucket: "sach-dbee5.appspot.com",
+            messagingSenderId: "1065873242784",
+            appId: "1:1065873242784:web:c9fec0dc2a4f71aa0627c5",
+            measurementId: "G-1GK80DCRZ8"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        function read(){
+            pp = document.getElementById('pitch').value;
+            rr = document.getElementById('roll').value;
+        }
+        function rel(){
+            read()
+            firebase.database().ref('test/int').on('value',function(snapshot){
+                document.getElementById('pitch').value = snapshot.val().pitch;
+                document.getElementById('roll').value = snapshot.val().roll;
+            });
+        }
+    </script>
+</body>
+</html>
